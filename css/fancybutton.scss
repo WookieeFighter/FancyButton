@@ -1,0 +1,749 @@
+// IMPORTS
+
+@import 'palette.sass'; //REMOVE ME TO SET CUSTOM COLORS
+
+//COLOR VARIABLES
+
+// Replace $primary-color, $accent-color, $primary-color-text, $primary-text-color to create custom scheme
+
+$primary: $primary-color; 
+$accent: $accent-color;
+$light:  $primary-color-text;
+$dark:  $primary-text-color;
+
+
+
+// MIXINS
+
+@mixin transition($speed){
+	-webkit-transition: all $speed ease; /* Safari and Chrome */
+	-moz-transition: all $speed ease; /* Firefox */
+	-ms-transition: all $speed ease; /* IE 9 */
+	-o-transition: all $speed ease; /* Opera */
+	transition: all $speed ease;	
+}
+
+@mixin transform-scale($scaleX,$scaleY,$translateY){
+	-webkit-transform: scale($scaleX,$scaleY) translateY($translateY);
+	-moz-transform: scale($scaleX,$scaleY) translateY($translateY);
+	-ms-transform: scale($scaleX,$scaleY) translateY($translateY);
+	transform: scale($scaleX,$scaleY) translateY($translateY);
+}
+
+@mixin inner-shadow($shadow-color){
+	-webkit-box-shadow: inset 0px 0px 20px 0px $shadow-color;
+	-moz-box-shadow: inset 0px 0px 20px 0px $shadow-color;
+	box-shadow: inset 0px 0px 20px 0px $shadow-color;
+}
+
+
+@mixin outer-shadow(){
+	-webkit-box-shadow:rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.117647) 0px 1px 5px 0px;
+	-moz-box-shadow:rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.117647) 0px 1px 5px 0px;
+	box-shadow: rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.117647) 0px 1px 5px 0px;
+	box-shadow:rgba(0, 0, 0, 0.137255) 0px 2px 2px 0px, rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.117647) 0px 1px 5px 0px;
+}
+
+@mixin outer-shadow-more(){
+	-webkit-box-shadow:rgba(0, 0, 0, 0.3) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 4px 4px -4px, rgba(0, 0, 0, 0.18) 0px 3px 7px 0px;
+	-moz-box-shadow:rgba(0, 0, 0, 0.3) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 4px 4px -4px, rgba(0, 0, 0, 0.18) 0px 3px 7px 0px;
+	box-shadow:rgba(0, 0, 0, 0.3) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 4px 4px -4px, rgba(0, 0, 0, 0.18) 0px 3px 7px 0px;
+	box-shadow:rgba(0, 0, 0, 0.3) 0px 4px 4px 0px, rgba(0, 0, 0, 0.3) 0px 4px 4px -4px, rgba(0, 0, 0, 0.18) 0px 3px 7px 0px;
+}
+
+
+@mixin animate($name,$duration,$iterations,$timing){
+	-webkit-animation:$name $duration $iterations $timing;
+  	-moz-animation:$name $duration $iterations $timing; 
+  	-o-animation:$name $duration $iterations $timing;
+  	animation:$name $duration $iterations $timing;
+}
+
+@mixin transform($transform){
+	-webkit-transform:$transform;
+	-moz-transform:$transform;
+	-ms-transform:$transform;
+	transform:$transform;
+}
+
+
+// BUTTONS
+
+
+
+.fancy{
+    	display: -webkit-flex;
+    	display: flex;
+		align-items:center;
+		justify-content: center;
+		position:relative;
+		padding:10px;
+
+	p{
+		margin:0px;
+		letter-spacing: 1px;
+		text-align:center;
+	}
+	& > .fa-stack + p, & > p + .fa-stack{
+		padding-left:5px;
+	}
+}
+
+// SIZING
+
+.fb-lg{
+	height: 50px;
+	min-width:50px;
+}
+.fb-2x{
+	height: 60px;
+	min-width:60px;
+}
+.fb-3x{
+	height: 70px;
+	min-width:70px;
+}
+.fb-4x{
+	height:80px;
+	min-width:80px;
+}
+.fb-5x{
+	height:90px;
+	min-width:90px;
+}
+
+// COLOR SELECTION AND COLOR INVERSE
+
+
+// INVERT COLOR
+
+.fb-invert-color, .fb-invert-color i, .fb-invert-color p{
+	@include transition(0.5s);
+}
+
+.fb-invert-color:hover, .fb-invert-color:hover i, .fb-invert-color:hover p{
+	@include transition(0.5s);
+}
+
+a.fancy{
+
+/* PRIMARY BACKGROUND */	
+	&[class*="fb-primary"]{	
+		background-color:$primary;
+		.fa-circle + i,
+		.fa-square + i{
+			color:$primary;
+		}
+
+		&.fb-invert-color:hover{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color: $primary;
+			}		
+		}
+
+		&[class*="-accent"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$accent;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$accent;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$accent;
+				}
+			}
+		}
+		
+		&[class*="-dark"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$dark;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$dark;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$dark;
+				}
+			}
+		}
+		&[class*="-light"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$light;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$light;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$light;
+				}
+			}
+		}
+	}
+
+/* ACCENT BACKGROUND */
+
+	&[class*="fb-accent"]{	
+		background-color:$accent;
+		.fa-circle + i,
+		.fa-square + i{
+			color:$accent;
+		}
+		&.fb-invert-color:hover{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color: $accent;
+			}		
+		}
+
+		&[class*="-primary"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$primary;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$primary;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$primary;
+				}
+			}
+		}
+		
+		&[class*="-dark"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$dark;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$dark;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$dark;
+				}
+			}
+		}
+		&[class*="-light"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$light;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$light;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$light;
+				}
+			}
+		}
+	}
+
+
+/* LIGHT BACKGROUND */
+	&[class*="fb-light"]{	
+		background-color:$light;
+		.fa-circle + i,
+		.fa-square + i{
+			color:$light;
+		}
+		&.fb-invert-color:hover{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color: $light;
+			}		
+		}
+		&[class*="-primary"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$primary;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$primary;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$primary;
+				}
+			}
+		}
+		
+		&[class*="-dark"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$dark;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$dark;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$dark;
+				}
+			}
+		}
+		&[class*="-accent"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i{
+				color:$accent;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$accent;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$accent;
+				}
+			}
+		}
+	}
+
+	/* DARK BACKGROUND */
+	&[class*="fb-dark"]{	
+		background-color:$dark;
+		.fa-circle + i,
+		.fa-square + i{
+			color:$dark;
+		}
+		&.fb-invert-color:hover{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i, .fa-square-o + i{
+				color: $dark;
+			}		
+		}
+		&[class*="-primary"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i, .fa-square-o + i{
+				color:$primary;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$primary;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$primary;
+				}
+			}
+		}
+		
+		&[class*="-accent"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i, .fa-square-o + i{
+				color:$accent;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$accent;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$accent;
+				}
+			}
+		}
+		&[class*="-light"]{
+			& > i, & > p, .fa-stack i:first-child, .fa-square-o + i, .fa-square-o + i{
+				color:$light;
+			}
+			&.fb-invert-color:hover{	
+				background-color:$light;
+				
+				.fa-circle + i,
+				.fa-square + i{
+					color:$light;
+				}
+			}
+		}
+	}
+
+}
+
+
+
+
+
+// SHADOWING
+
+
+.fb-drop-shadow{
+	@include outer-shadow();
+}
+
+
+.fb-drop-shadow-more{
+	@include outer-shadow-more();
+}
+
+// ZOOM
+.fb-zoom, .fb-zoom i,.fb-zoom p, .fa-stack{
+		@include transition(0.2s);
+}
+
+.fb-zoom:hover{
+	i{
+		@include transition(0.2s);
+		@include transform-scale(1.2,1.2,0);
+	}
+
+	p{
+		@include transition(0.2s);
+		@include transform-scale(1.1,1.1,0px);
+	}
+
+}
+
+// LIFT
+
+.fb-lift{	
+	@include transition(0.2s);
+}
+
+.fb-lift:hover{	
+	@include transform-scale(1.05,1.05,-2px);
+	@include transition(0.2s);
+	@include outer-shadow();
+}
+
+// push
+
+.fb-push{	
+	@include transition(0.2s);
+}
+
+.fb-push:hover{	
+	@include transform-scale(0.95,0.95,2px);
+	@include transition(0.2s);
+	@include inner-shadow(rgba(80,80,80,0.1));
+}
+
+//PULSE
+
+.fb-pulse:hover{
+
+	p{
+	 	@include animate(pulse-text,1s,infinite,ease-in);
+	}
+	i{
+		@include animate(pulse-icon,1s,infinite,ease-in);
+	}
+
+	@-webkit-keyframes pulse-text{ 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.1,1.1,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+	@-moz-keyframes pulse-text { 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.1,1.1,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+	@-o-keyframes pulse-text { 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.1,1.1,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+	@keyframes pulse-text { 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.1,1.1,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+
+	@-webkit-keyframes pulse-icon{ 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.2,1.2,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+	@-moz-keyframes pulse-icon { 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.2,1.2,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+	@-o-keyframes pulse-icon { 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.2,1.2,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+	@keyframes pulse-icon { 
+		0% {@include transform-scale(1,1,0); }
+
+		50%{@include transform-scale(1.2,1.2,0); }
+
+		100%{@include transform-scale(1,1,0); }
+	}
+}
+
+
+// FLIP
+
+.fb-flip-container{	
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    perspective: 1000;
+	display:inline-block;
+}
+.fb-flip-container:hover .fb-flip-x{
+	@include transform(rotateY(180deg));
+}
+
+.fb-flip-container:hover .fb-flip-y {
+	@include transform(rotateX(180deg));
+}
+
+.fb-flip-x,.fb-flip-y{
+	transition: 0.6s;
+	transform-style: preserve-3d;	
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+	position: relative;
+
+	.fancy{
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    -webkit-transition: 0.6s;
+    -webkit-transform-style: preserve-3d;
+
+    -moz-transition: 0.6s;
+    -moz-transform-style: preserve-3d;
+
+    -o-transition: 0.6s;
+    -o-transform-style: preserve-3d;
+
+    -ms-transition: 0.6s;
+    -ms-transform-style: preserve-3d;
+
+    transition: 0.6s;
+    transform-style: preserve-3d;
+	position: absolute;
+
+	top: 0;
+	left: 0;
+	}
+}
+
+.fb-flip-x{	
+	.fancy:first-child {
+		z-index: 2;
+		@include transform(rotateY(0deg));
+	}
+
+	.fancy:last-child {
+		@include transform(rotateY(180deg));
+	}
+}
+.fb-flip-y{	
+	.fancy:first-child {
+		z-index: 2;
+		@include transform(rotateX(0deg));
+	}
+
+	.fancy:last-child {
+		@include transform(rotateX(180deg));
+	}
+}
+
+
+
+/* BOX ROTATE */
+.fb-rotate-container{	
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    perspective: 1000;
+	display:relative;
+}
+
+.fb-rotate{	
+	transition: 0.6s;
+	transform-style: preserve-3d;	
+    -moz-transform: perspective(1000px);
+    -moz-transform-style: preserve-3d;
+	position: absolute;
+	.fancy {
+		margin: 0;
+		position: absolute;
+	}
+}
+
+/* ROTATE CONTAINERS ON HOVER */
+.fb-rotate-container:hover .fb-rotate-up{
+	@include transform(rotateX(90deg));
+}
+
+.fb-rotate-container:hover .fb-rotate-down{
+	@include transform(rotateX(-90deg));
+}
+.fb-rotate-container:hover .fb-rotate-right{
+	@include transform(rotateY(90deg));
+}
+
+.fb-rotate-container:hover .fb-rotate-left{
+	@include transform(rotateY(-90deg));
+}
+
+
+/*  ROTATE TO CORRECT POSITION, FIX Z POSITIONING*/
+
+.fb-rotate-container{
+	& > .fb-lg{
+		@include transform( translateZ( -25px ));
+		
+		.fancy:first-child{
+			@include transform( translateZ( 25px )); 
+		}
+
+		&.fb-rotate-up{	
+			.fancy:last-child{
+				@include transform( rotateX(-90deg ) translateZ( 25px ));
+			}
+		}
+
+		&.fb-rotate-down{	
+			.fancy:last-child{
+				@include transform( rotateX( 90deg ) translateZ( 25px ));
+			}
+		}
+		&.fb-rotate-right{	
+			.fancy:last-child{
+				@include transform( rotateY( -90deg ) translateZ( 25px ));
+			}
+		}
+		&.fb-rotate-left{	
+			.fancy:last-child{
+				@include transform( rotateY( 90deg ) translateZ( 25px ));
+			}
+		}
+
+	}
+
+	& > .fb-2x{
+		@include transform( translateZ( -30px ));
+		
+		.fancy:first-child{
+			@include transform( translateZ( 30px )); 
+		}
+
+		&.fb-rotate-up{	
+			.fancy:last-child{
+				@include transform( rotateX(-90deg ) translateZ( 30px ));
+			}
+		}
+
+		&.fb-rotate-down{	
+			.fancy:last-child{
+				@include transform( rotateX( 90deg ) translateZ( 30px ));
+			}
+		}
+		&.fb-rotate-right{	
+			.fancy:last-child{
+				@include transform( rotateY( -90deg ) translateZ( 30px ));
+			}
+		}
+		&.fb-rotate-left{	
+			.fancy:last-child{
+				@include transform( rotateY( 90deg ) translateZ( 30px ));
+			}
+		}
+
+	}
+
+	& > .fb-3x{
+		@include transform( translateZ( -35px ));
+		
+		.fancy:first-child{
+			@include transform( translateZ( 35px )); 
+		}
+
+		&.fb-rotate-up{	
+			.fancy:last-child{
+				@include transform( rotateX(-90deg ) translateZ( 35px ));
+			}
+		}
+
+		&.fb-rotate-down{	
+			.fancy:last-child{
+				@include transform( rotateX( 90deg ) translateZ( 35px ));
+			}
+		}
+		&.fb-rotate-right{	
+			.fancy:last-child{
+				@include transform( rotateY( -90deg ) translateZ( 35px ));
+			}
+		}
+		&.fb-rotate-left{	
+			.fancy:last-child{
+				@include transform( rotateY( 90deg ) translateZ( 35px ));
+			}
+		}
+	}
+
+	& > .fb-4x{
+		@include transform( translateZ( -40px ));
+		
+		.fancy:first-child{
+			@include transform( translateZ( 40px )); 
+		}
+
+		&.fb-rotate-up{	
+			.fancy:last-child{
+				@include transform( rotateX(-90deg ) translateZ( 40px ));
+			}
+		}
+
+		&.fb-rotate-down{	
+			.fancy:last-child{
+				@include transform( rotateX( 90deg ) translateZ( 40px ));
+			}
+		}
+		&.fb-rotate-right{	
+			.fancy:last-child{
+				@include transform( rotateY( -90deg ) translateZ( 40px ));
+			}
+		}
+		&.fb-rotate-left{	
+			.fancy:last-child{
+				@include transform( rotateY( 90deg ) translateZ( 40px ));
+			}
+		}
+	}
+
+	& > .fb-5x{
+		@include transform( translateZ( -45px ));
+		
+		.fancy:first-child{
+			@include transform( translateZ( 45px )); 
+		}
+
+		&.fb-rotate-up{	
+			.fancy:last-child{
+				@include transform( rotateX(-90deg ) translateZ( 45px ));
+			}
+		}
+
+		&.fb-rotate-down{	
+			.fancy:last-child{
+				@include transform( rotateX( 90deg ) translateZ( 45px ));
+			}
+		}
+		&.fb-rotate-right{	
+			.fancy:last-child{
+				@include transform( rotateY( -90deg ) translateZ( 45px ));
+			}
+		}
+		&.fb-rotate-left{	
+			.fancy:last-child{
+				@include transform( rotateY( 90deg ) translateZ( 45px ));
+			}
+		}
+	}
+}
+

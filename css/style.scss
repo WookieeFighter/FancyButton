@@ -1,0 +1,157 @@
+// IMPORTS
+
+@import 'palette.sass';
+
+//  FORMAT
+/*
+$primary-color-dark:   
+$primary-color:      
+$primary-color-light:  
+$primary-color-text:   
+$accent-color:       
+$primary-text-color:  
+$secondary-text-color: 
+$divider-color:        
+ */
+*{
+	font-family: 'Roboto', sans-serif;
+	color:$primary-text-color;
+}
+
+header, .main, footer {
+  padding-left: 240px;
+  padding-right: 100px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, .main, footer {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+h2{
+	color:$primary-color;
+	font-weight:300;
+	font-size:3.5em;
+	border-bottom: 1px solid $divider-color;
+	padding-bottom:3px;
+}
+
+
+h3{
+	color:$primary-color;
+	font-weight:300;
+	font-size:2.5em;
+	border-bottom: 1px solid $divider-color;
+	padding-bottom:3px;
+}
+
+.sub-text{
+	color: $secondary-text-color;
+}
+
+// NAV
+nav{
+	display:none;
+}
+
+header{
+	background-color:$primary-color;
+
+	h1{
+		padding-top:30px;
+		color: $primary-color-text;
+		width: 100%;
+		margin: 0px;
+		font-weight: 300;
+		font-size: 3.9em;
+		text-align: left;
+	}
+
+	h4{
+		font-weight: 300;
+		padding-bottom: 30px;
+		color: $primary-color-light;
+	}
+
+}
+
+// SIDEBAR
+
+.logo{
+	margin:20px auto;
+	padding:0 30px;
+	a{
+		padding:0px !important;
+	}
+	a:hover{
+		background-color:$primary-color;
+	}
+}
+
+
+
+
+
+// MAIN
+
+section{
+	padding-bottom:40px;
+}
+
+.sass-option{
+	padding: 10px 0px 5px 20px;
+	display:block;
+}
+
+code{
+	background-color:$primary-color-light;
+	color:$primary-color;
+	padding: 2px 4px;
+    border-radius: 4px;
+}
+
+
+.button-display{
+	.row{
+		padding-left:17px;
+		padding-bottom:5px;
+		margin-bottom: 0px;
+		margin-left: 0px;
+		background-color:$primary-color-light;
+		display:flex;
+		align-items:center;
+		position:relative;
+		
+		:first-child + p{
+			padding-left:5px;
+			margin:0px;
+		}
+	}
+
+	& .row:first-child{
+		padding-top:15px;
+	}
+	& .row:last-child{
+		padding-bottom:15px;
+		margin-bottom:10px;
+	}
+}
+
+.code-display{
+	p{
+		margin-top: -4px;
+	}
+	pre{
+		margin-top: 0px;
+	}
+
+}
+
+// PRISM CUSTOMIZATION
+
+pre{
+	border: 1px solid $divider-color;
+}
+
